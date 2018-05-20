@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+<comment>Capture File</comment>
+<entry key="StopAfter">0</entry>
+<entry key="java.runtime.name">Java(TM) SE Runtime Environment</entry>
+<entry key="sun.boot.library.path">C:\Program Files\Java\jdk1.7.0_60\jre\bin</entry>
+<entry key="java.vm.version">24.60-b09</entry>
+<entry key="java.vm.vendor">Oracle Corporation</entry>
+<entry key="java.vendor.url">http://java.oracle.com/</entry>
+<entry key="path.separator">;</entry>
+<entry key="Name">captura2_150518_162912</entry>
+<entry key="java.vm.name">Java HotSpot(TM) 64-Bit Server VM</entry>
+<entry key="file.encoding.pkg">sun.io</entry>
+<entry key="user.script"/>
+<entry key="user.country">ES</entry>
+<entry key="sun.java.launcher">SUN_STANDARD</entry>
+<entry key="sun.os.patch.level">Service Pack 1</entry>
+<entry key="java.vm.specification.name">Java Virtual Machine Specification</entry>
+<entry key="user.dir">C:\Users\Nuria\workspace\proyecto</entry>
+<entry key="java.runtime.version">1.7.0_60-b19</entry>
+<entry key="java.awt.graphicsenv">sun.awt.Win32GraphicsEnvironment</entry>
+<entry key="java.endorsed.dirs">C:\Program Files\Java\jdk1.7.0_60\jre\lib\endorsed</entry>
+<entry key="os.arch">amd64</entry>
+<entry key="LastCaptureFile">captura2_150518_162912_11.pcap</entry>
+<entry key="java.io.tmpdir">C:\Users\Nuria\AppData\Local\Temp\</entry>
+<entry key="line.separator">&#13;
+</entry>
+<entry key="MultipleFile">Yes</entry>
+<entry key="java.vm.specification.vendor">Oracle Corporation</entry>
+<entry key="user.variant"/>
+<entry key="os.name">Windows 7</entry>
+<entry key="Locate">C:\Users\Nuria\workspace\proyecto\files\capturas\capturas2</entry>
+<entry key="sun.jnu.encoding">Cp1252</entry>
+<entry key="java.library.path">C:\Program Files\Java\jdk1.7.0_60\bin;C:\windows\Sun\Java\bin;C:\windows\system32;C:\windows;C:\Program Files\Java\jdk1.7.0_60\jre\bin;C:\Program Files\Common Files\Microsoft Shared\Windows Live;C:\Program Files (x86)\Common Files\Microsoft Shared\Windows Live;C:\Program Files (x86)\AMD APP\bin\x86_64;C:\Program Files (x86)\AMD APP\bin\x86;C:\Program Files (x86)\Intel\iCLS Client\;C:\Program Files\Intel\iCLS Client\;C:\windows\system32;C:\windows;C:\windows\System32\Wbem;C:\windows\System32\WindowsPowerShell\v1.0\;C:\Program Files\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files (x86)\ATI Technologies\ATI.ACE\Core-Static;C:\Program Files (x86)\Toshiba\Bluetooth Toshiba Stack\sys\;C:\Program Files (x86)\Toshiba\Bluetooth Toshiba Stack\sys\x64\;C:\Program Files (x86)\Windows Live\Shared;C:\Program Files (x86)\Calibre2\; C:\Program Files (x86)\Java\jdk1.6.0_45\;C:\Program Files\Java\jdk1.6.0_45\bin;c:\Program Files (x86)\Microsoft SQL Server\90\Tools\binn\;C:\Program Files (x86)\Skype\Phone\;C:\Program Files (x86)\MySQL\MySQL Fabric 1.5.3 &amp; MySQL Utilities 1.5.3 1.5\;C:\Program Files (x86)\MySQL\MySQL Fabric 1.5.3 &amp; MySQL Utilities 1.5.3 1.5\Doctrine extensions for PHP\;.</entry>
+<entry key="sun.awt.enableExtraMouseButtons">true</entry>
+<entry key="java.specification.name">Java Platform API Specification</entry>
+<entry key="java.class.version">51.0</entry>
+<entry key="sun.management.compiler">HotSpot 64-Bit Tiered Compilers</entry>
+<entry key="os.version">6.1</entry>
+<entry key="RingBuffer">11</entry>
+<entry key="user.home">C:\Users\Nuria</entry>
+<entry key="user.timezone">Europe/Paris</entry>
+<entry key="java.awt.printerjob">sun.awt.windows.WPrinterJob</entry>
+<entry key="file.encoding">ISO-8859-1</entry>
+<entry key="java.specification.version">1.7</entry>
+<entry key="user.name">Nuria</entry>
+<entry key="java.class.path">C:\Users\Nuria\workspace\proyecto\bin;C:\Users\Nuria\workspace\proyecto\libs\AbsoluteLayout.jar;C:\Users\Nuria\workspace\proyecto\libs\jcommon-0.9.6.jar;C:\Users\Nuria\workspace\proyecto\libs\jdom.jar;C:\Users\Nuria\workspace\proyecto\libs\jfreechart-0.9.21.jar;C:\Users\Nuria\workspace\proyecto\libs\net.sourceforge.jpcap-0.01.16.jar;C:\Users\Nuria\workspace\proyecto\libs\swing-layout-1.0.3.jar;C:\Users\Nuria\workspace\proyecto\libs\jnetpcap.jar;C:\Users\Nuria\workspace\proyecto\libs\net.sf.fjep.fatjar_0.0.31.jar</entry>
+<entry key="java.vm.specification.version">1.7</entry>
+<entry key="sun.arch.data.model">64</entry>
+<entry key="java.home">C:\Program Files\Java\jdk1.7.0_60\jre</entry>
+<entry key="sun.java.command">Sniffer</entry>
+<entry key="java.specification.vendor">Oracle Corporation</entry>
+<entry key="user.language">es</entry>
+<entry key="Capturando">No</entry>
+<entry key="Extension">.pcap</entry>
+<entry key="awt.toolkit">sun.awt.windows.WToolkit</entry>
+<entry key="LastNumCaptureFile">11</entry>
+<entry key="java.vm.info">mixed mode</entry>
+<entry key="java.version">1.7.0_60</entry>
+<entry key="java.ext.dirs">C:\Program Files\Java\jdk1.7.0_60\jre\lib\ext;C:\windows\Sun\Java\lib\ext</entry>
+<entry key="sun.boot.class.path">C:\Program Files\Java\jdk1.7.0_60\jre\lib\resources.jar;C:\Program Files\Java\jdk1.7.0_60\jre\lib\rt.jar;C:\Program Files\Java\jdk1.7.0_60\jre\lib\sunrsasign.jar;C:\Program Files\Java\jdk1.7.0_60\jre\lib\jsse.jar;C:\Program Files\Java\jdk1.7.0_60\jre\lib\jce.jar;C:\Program Files\Java\jdk1.7.0_60\jre\lib\charsets.jar;C:\Program Files\Java\jdk1.7.0_60\jre\lib\jfr.jar;C:\Program Files\Java\jdk1.7.0_60\jre\classes</entry>
+<entry key="java.vendor">Oracle Corporation</entry>
+<entry key="file.separator">\</entry>
+<entry key="java.vendor.url.bug">http://bugreport.sun.com/bugreport/</entry>
+<entry key="sun.cpu.endian">little</entry>
+<entry key="sun.io.unicode.encoding">UnicodeLittle</entry>
+<entry key="sun.desktop">windows</entry>
+<entry key="sun.cpu.isalist">amd64</entry>
+</properties>

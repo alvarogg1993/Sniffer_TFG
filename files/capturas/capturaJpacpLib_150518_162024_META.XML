@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CaptureSniffer>
+  <CapturePreferences>
+    <Capture>
+      <Interface>\Device\NPF_{0A8D3CA3-69AE-4CE1-AF4C-EA84AA58DDCE}
+ \Device\NPF_{0A8D3CA3-69AE-4CE1-AF4C-EA84AA58DDCE}</Interface>
+      <Promiscuous_Modo>Yes</Promiscuous_Modo>
+      <NFS_Sync>No</NFS_Sync>
+      <Filter Id="No">
+        <Advanced Id="No" />
+        <Normal Id="Yes">
+          <Host />
+          <Protocol />
+          <Port />
+        </Normal>
+      </Filter>
+    </Capture>
+    <File>
+      <Locate />
+      <Multiple_Files Id="Yes">
+        <Space Id="Yes" Type="kilobyte(s)">10</Space>
+        <Time Id="No" Type="segundo(s)" />
+        <Ring_Buffer Id="Yes" Type="">10</Ring_Buffer>
+        <Circular_XML Id="Yes" />
+        <Stop_After Id="No" Type="" />
+      </Multiple_Files>
+    </File>
+    <Stop_Capture>
+      <After_Packets Id="No" />
+      <After_Space Id="No" Type="kilobyte(s)" />
+      <After_Time Id="No" Type="segundo(s)" />
+    </Stop_Capture>
+  </CapturePreferences>
+  <MetaCapture>
+    <Locate>
+      <Relative Id="No" />
+      <Absolute Id="Yes">
+        <Path>./files/Capturas</Path>
+        <Name>capturaJpacpLib_150518_162024</Name>
+      </Absolute>
+    </Locate>
+    <Multiple_Files Id="Yes">
+      <Ring_Buffer Id="Yes">10</Ring_Buffer>
+      <Start>1</Start>
+      <End>6</End>
+    </Multiple_Files>
+  </MetaCapture>
+</CaptureSniffer>
+

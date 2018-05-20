@@ -1,0 +1,341 @@
+package dominio.pcapDumper;
+
+import java.io.IOException;
+
+import jpcap.JpcapCaptor;
+import jpcap.JpcapWriter;
+import jpcap.PacketReceiver;
+import jpcap.packet.Packet;
+import dominio.pcapDumper.Captura;
+
+class SavePacketHandler implements PacketReceiver {
+	private JpcapWriter file;
+	JpcapCaptor jpcap;
+	JpcapCaptor jpcap_writer;
+	public long time;
+	public long space;
+	private SaveTime STime;
+	private SaveSpace SSpace;
+	public SaveFileName SFName;
+	public String strFile;
+	public String auxStrFile;
+	public long contPacket;
+	public long numPacket;
+	public CountPacketHandler RCountPH;
+	public Captura venpadre;
+	static long contSpaceLen;
+	private boolean controlPacket;
+	private boolean multiFile = false;
+	private boolean otroFile = false;
+	
+	public SavePacketHandler(Captura cap, SaveFileName SFN,
+			CountPacketHandler CPH, JpcapCaptor jpcap) {
+		this.jpcap = jpcap;
+		this.venpadre = cap;
+		String aux = "./files/Capturas";
+		String strF = "capturaJpacpLib.pcap";
+
+		SFN.setSaveFileName(aux, strF);
+		SFName = SFN;
+
+		setTime(0);
+		setSpace(0);
+		setPila(0);
+		setFile(SFName.getFile());
+
+		setNumPacket(0);
+		setContPacket(0);
+		RCountPH = CPH;
+		contSpaceLen = 0;
+		controlPacket = false;
+	}
+
+	public SavePacketHandler(Captura cap, SaveFileName SFN,
+			CountPacketHandler CPH, JpcapCaptor jpcap, String fullPath) {
+		this.jpcap = jpcap;
+		this.venpadre = cap;
+
+		SFN.setSaveFileName(fullPath);
+		SFName = SFN;
+
+		setTime(0);
+		setSpace(0);
+		setPila(0);
+		setFile(SFName.getFile());
+
+		setNumPacket(0);
+		setContPacket(0);
+		RCountPH = CPH;
+		contSpaceLen = 0;
+		controlPacket = false;
+	}
+
+	public SavePacketHandler(SaveFileName SFN, String fullPath) {
+		SFName = SFN;
+		SFName.setSaveFileName(fullPath);
+		setTime(0);
+		setSpace(0);
+		setPila(0);
+		setFile(SFName.getFile());
+		setContPacket(0);
+		RCountPH = new CountPacketHandler();
+		contSpaceLen = 0;
+		controlPacket = false;
+	}
+	
+	private Thread captureThread;
+
+	public void runHilos() {
+		if (getTime() != 0) {
+			STime = new SaveTime(this, getTime(), this.SFName);
+			STime.start();
+			multiFile = true;
+			
+		} else {
+			if (getSpace() != 0) {
+				if (getNumPacket() != 0) {
+				captureThread = new Thread(new Runnable() {
+		
+					public void run() {
+						while (captureThread != null) {
+						}
+					}
+				});
+				captureThread.setPriority(Thread.MIN_PRIORITY);
+				captureThread.start();
+			}
+			SFName.setNext();
+			setTcpDumpWriter_first(SFName.getNameTime());
+			SFName.saveStateMulti(true);
+			System.out.println("\n----> " + SFName.getNameTime());
+			multiFile = true;
+		} else {
+			if (this.getNumPacket() != 0) {
+				captureThread = new Thread(new Runnable() {
+					public void run() {
+						while (captureThread != null) {
+						}
+					}
+				});
+				captureThread.setPriority(Thread.MIN_PRIORITY);
+				captureThread.start();
+			}
+			//System.in.skip(System.in.avaible()); //NUEVA LINEA
+			setTcpDumpWriter_first();
+			SFName.saveState(true);
+		}
+		
+	}
+	}
+	
+	public void stopHilos() {
+		if (STime != null) {
+			// System.out.println("Destruyendo hiloSaveTiem");
+			STime.stop();
+		}// OJO AKI ESOT ANTES NO ESTABA
+		if (SSpace != null) {
+			// System.out.println("Destruyendo hiloSaveSpace");
+			SSpace.stop();
+			//captureThread.stop();
+		}
+		if (captureThread != null) {
+			// System.out.println("Destruyendo hiloNumPaquetes");
+			captureThread.stop();
+		}
+
+	}
+	public void setTcpDumpWriter_first() {
+		try {
+			this.file = JpcapWriter.openDumpFile(this.jpcap_writer,
+					getFullName());
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+
+	public void setTcpDumpWriter() {
+		try {
+			file.close();
+			file = JpcapWriter.openDumpFile(jpcap_writer, getFullName());
+			resetSpaceLen();
+			otroFile = false;
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+
+	
+	public void setTcpDumpWriter(String strAuxName) {
+		JpcapWriter fileAux, fileAux2;
+		try {
+			setAuxFile(strAuxName);
+			otroFile = true;
+			// file.close();
+			// file = JpcapWriter.openDumpFile(jpcap_writer,getAuxFullName());
+			resetSpaceLen();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		setFile(strAuxName);
+	}
+
+	public void setTcpDumpWriter_first(String strAuxName) {
+		JpcapWriter fileAux, fileAux2;
+		try {
+			setAuxFile(strAuxName);
+			file = JpcapWriter.openDumpFile(jpcap_writer, getAuxFullName());
+			resetSpaceLen();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		setFile(strAuxName);
+	}
+	
+	public void receivePacket(Packet packet) {
+		try {
+			nextContPacket();
+			System.out.print(".");
+			System.out.println(packet);
+			if (controlPacket) {
+				RCountPH.receivePacket(packet);
+			}
+			file.writePacket(packet);
+			contSpaceLen += packet.len;
+			
+			if (otroFile==true) {
+				setTcpDumpWriter();
+			}
+			/* Una vez grabado podemos vaciar el buffer de memoria */
+			System.in.skip(System.in.available());
+			if ((contSpaceLen >= getSpace()) && (getSpace() != 0)) {
+				SFName.setNext();
+				if (SFName.getNext() == -1) {
+					stopCaptura();
+				} else {
+					setTcpDumpWriter(SFName.getNameTime());
+					SFName.saveStateMulti(true);
+					System.out.println("\n----> " + SFName.getNameTime());
+				}
+				
+			}
+			
+			if ((getContPacket() >= getNumPacket()) && (getNumPacket() != 0)) {
+				stopCaptura();
+			}
+			
+		} catch (Exception exceptionfile) {
+			exceptionfile.printStackTrace();
+		}
+	}
+
+	public void stopCaptura() {
+		if (multiFile==true) {
+			SFName.saveStateMulti(false);
+		} else {
+			SFName.saveState(false);
+		}
+		setSpace(0);
+
+		getVenPadre().stopCaptureThread();
+
+		//file.close();
+	
+	}
+
+	public Captura getVenPadre() {
+		return this.venpadre;
+	}
+
+	public void setTime(long time) {
+		this.time = time;
+	}
+
+	public long getTime() {
+		return this.time;
+	}
+
+	public void setSpace(long space) {
+		this.space = space;
+	}
+
+	public long getSpace() {
+		return this.space;
+	}
+
+	public void setFile(String file) {
+		this.strFile = file;
+	}
+
+	public String getFile() {
+		return this.strFile;
+	}
+
+	public void setPila(int pila) {
+		this.SFName.setPila(pila);
+	}
+
+	public int getPila() {
+		return this.SFName.getPila();
+	}
+
+	public void setMaximo(int max) {
+		this.SFName.setMaximo(max);
+	}
+
+	public int getMaximo() {
+		return this.SFName.getMaximo();
+	}
+
+	public void setAuxFile(String file) {
+		this.auxStrFile = file;
+	}
+
+	public String getAuxFile() {
+		return this.auxStrFile;
+	}
+
+	public String getFullName() {
+		return this.SFName.getPath() + this.SFName.getSeparator() + getFile();
+	}
+
+	public String getAuxFullName() {
+		return this.SFName.getPath() + this.SFName.getSeparator()
+				+ getAuxFile();
+	}
+
+	public void setNumPacket(long aux) {
+		this.numPacket = aux;
+	}
+
+	public long getNumPacket() {
+		return this.numPacket;
+	}
+
+	public void setContPacket(long aux) {
+		this.contPacket = aux;
+	}
+
+	public long getContPacket() {
+		return this.contPacket;
+	}
+
+	public void nextContPacket() {
+		this.contPacket += 1;
+	}
+
+	public void resetSpaceLen() {
+		contSpaceLen = 0;
+	}
+
+	public long getspaceLen() {
+		return contSpaceLen;
+	}
+
+	public void setControlPacket(boolean aux) {
+		this.controlPacket = aux;
+	}
+
+	public void setWriter(JpcapCaptor jWriter) {
+		this.jpcap_writer = jWriter;
+	}
+}

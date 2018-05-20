@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CaptureSniffer>
+  <CapturePreferences>
+    <Capture>
+      <Interface>Microsoft
+ Microsoft</Interface>
+      <Promiscuous_Modo>Yes</Promiscuous_Modo>
+      <Filter Id="No">
+        <Advanced Id="No" />
+        <Normal Id="Yes">
+          <Host />
+          <Protocol />
+          <Port />
+        </Normal>
+      </Filter>
+    </Capture>
+    <File>
+      <Locate />
+      <Multiple_Files Id="No">
+        <Space Id="No" Type="kilobyte(s)" />
+        <Time Id="No" Type="segundo(s)" />
+        <Ring_Buffer Id="No" Type="" />
+        <Stop_After Id="No" Type="" />
+      </Multiple_Files>
+    </File>
+    <Stop_Capture>
+      <After_Packets Id="No">10</After_Packets>
+      <After_Space Id="No" Type="kilobyte(s)" />
+      <After_Time Id="Yes" Type="segundo(s)">10</After_Time>
+    </Stop_Capture>
+  </CapturePreferences>
+  <MetaCapture>
+    <Locate>
+      <Relative Id="No" />
+      <Absolute Id="Yes">
+        <Path>./files/Capturas</Path>
+        <Name>capturaJpacpLib_140914_222645</Name>
+      </Absolute>
+    </Locate>
+    <Multiple_Files Id="No">
+      <Ring_Buffer Id="No">0</Ring_Buffer>
+      <Start>0</Start>
+      <End>0</End>
+    </Multiple_Files>
+  </MetaCapture>
+</CaptureSniffer>
+

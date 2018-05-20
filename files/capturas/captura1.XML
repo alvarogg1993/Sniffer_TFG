@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Captura>
+  <Packet Numero="0">
+      <Packet_Information>
+        <Captured_Time>Tue Jul 01 00:25:29 CEST 2014</Captured_Time>
+        <Captured_Length>60</Captured_Length>
+      </Packet_Information>
+      <Ethernet_Frame>
+        <Frame_Type>2054</Frame_Type>
+        <Source_MAC>00:25:22:60:23:3c</Source_MAC>
+        <Destination_MAC>ff:ff:ff:ff:ff:ff</Destination_MAC>
+      </Ethernet_Frame>
+      <ARP_RARP>
+        <Hardware_Type>Ethernet (1)</Hardware_Type>
+        <Protocol_Type>IP (2048)</Protocol_Type>
+        <Hardware_Address_Length>6</Hardware_Address_Length>
+        <Protocol_Address_Length>4</Protocol_Address_Length>
+        <Operation>ARP Request</Operation>
+        <Sender_Hardware_Address>00:25:22:60:23:3c</Sender_Hardware_Address>
+        <Sender_Protocol_Address>/10.10.10.3</Sender_Protocol_Address>
+        <Target_Hardware_Address>00:00:00:00:00:00</Target_Hardware_Address>
+        <Target_Protocol_Address>/10.10.10.10</Target_Protocol_Address>
+      </ARP_RARP>
+  </Packet>
+  <Packet Numero="1">
+      <Packet_Information>
+        <Captured_Time>Tue Jul 01 00:25:30 CEST 2014</Captured_Time>
+        <Captured_Length>60</Captured_Length>
+      </Packet_Information>
+      <Ethernet_Frame>
+        <Frame_Type>2054</Frame_Type>
+        <Source_MAC>00:25:22:60:23:3c</Source_MAC>
+        <Destination_MAC>ff:ff:ff:ff:ff:ff</Destination_MAC>
+      </Ethernet_Frame>
+      <ARP_RARP>
+        <Hardware_Type>Ethernet (1)</Hardware_Type>
+        <Protocol_Type>IP (2048)</Protocol_Type>
+        <Hardware_Address_Length>6</Hardware_Address_Length>
+        <Protocol_Address_Length>4</Protocol_Address_Length>
+        <Operation>ARP Request</Operation>
+        <Sender_Hardware_Address>00:25:22:60:23:3c</Sender_Hardware_Address>
+        <Sender_Protocol_Address>/10.10.10.3</Sender_Protocol_Address>
+        <Target_Hardware_Address>00:00:00:00:00:00</Target_Hardware_Address>
+        <Target_Protocol_Address>/10.10.10.10</Target_Protocol_Address>
+      </ARP_RARP>
+  </Packet>
+  <Packet Numero="2">
+      <Packet_Information>
+        <Captured_Time>Tue Jul 01 00:25:31 CEST 2014</Captured_Time>
+        <Captured_Length>60</Captured_Length>
+      </Packet_Information>
+      <Ethernet_Frame>
+        <Frame_Type>2054</Frame_Type>
+        <Source_MAC>00:25:22:60:23:3c</Source_MAC>
+        <Destination_MAC>ff:ff:ff:ff:ff:ff</Destination_MAC>
+      </Ethernet_Frame>
+      <ARP_RARP>
+        <Hardware_Type>Ethernet (1)</Hardware_Type>
+        <Protocol_Type>IP (2048)</Protocol_Type>
+        <Hardware_Address_Length>6</Hardware_Address_Length>
+        <Protocol_Address_Length>4</Protocol_Address_Length>
+        <Operation>ARP Request</Operation>
+        <Sender_Hardware_Address>00:25:22:60:23:3c</Sender_Hardware_Address>
+        <Sender_Protocol_Address>/10.10.10.3</Sender_Protocol_Address>
+        <Target_Hardware_Address>00:00:00:00:00:00</Target_Hardware_Address>
+        <Target_Protocol_Address>/10.10.10.10</Target_Protocol_Address>
+      </ARP_RARP>
+  </Packet>
+  <Packet Numero="3">
+      <Packet_Information>
+        <Captured_Time>Tue Jul 01 00:25:39 CEST 2014</Captured_Time>
+        <Captured_Length>60</Captured_Length>
+      </Packet_Information>
+      <Ethernet_Frame>
+        <Frame_Type>2054</Frame_Type>
+        <Source_MAC>00:25:22:60:23:3c</Source_MAC>
+        <Destination_MAC>ff:ff:ff:ff:ff:ff</Destination_MAC>
+      </Ethernet_Frame>
+      <ARP_RARP>
+        <Hardware_Type>Ethernet (1)</Hardware_Type>
+        <Protocol_Type>IP (2048)</Protocol_Type>
+        <Hardware_Address_Length>6</Hardware_Address_Length>
+        <Protocol_Address_Length>4</Protocol_Address_Length>
+        <Operation>ARP Request</Operation>
+        <Sender_Hardware_Address>00:25:22:60:23:3c</Sender_Hardware_Address>
+        <Sender_Protocol_Address>/10.10.10.3</Sender_Protocol_Address>
+        <Target_Hardware_Address>00:00:00:00:00:00</Target_Hardware_Address>
+        <Target_Protocol_Address>/10.10.10.10</Target_Protocol_Address>
+      </ARP_RARP>
+  </Packet>
+  <Packet Numero="4">
+      <Packet_Information>
+        <Captured_Time>Tue Jul 01 00:25:40 CEST 2014</Captured_Time>
+        <Captured_Length>60</Captured_Length>
+      </Packet_Information>
+      <Ethernet_Frame>
+        <Frame_Type>2054</Frame_Type>
+        <Source_MAC>00:25:22:60:23:3c</Source_MAC>
+        <Destination_MAC>ff:ff:ff:ff:ff:ff</Destination_MAC>
+      </Ethernet_Frame>
+      <ARP_RARP>
+        <Hardware_Type>Ethernet (1)</Hardware_Type>
+        <Protocol_Type>IP (2048)</Protocol_Type>
+        <Hardware_Address_Length>6</Hardware_Address_Length>
+        <Protocol_Address_Length>4</Protocol_Address_Length>
+        <Operation>ARP Request</Operation>
+        <Sender_Hardware_Address>00:25:22:60:23:3c</Sender_Hardware_Address>
+        <Sender_Protocol_Address>/10.10.10.3</Sender_Protocol_Address>
+        <Target_Hardware_Address>00:00:00:00:00:00</Target_Hardware_Address>
+        <Target_Protocol_Address>/10.10.10.10</Target_Protocol_Address>
+      </ARP_RARP>
+  </Packet>
+  <Packet Numero="5">
+      <Packet_Information>
+        <Captured_Time>Tue Jul 01 00:25:41 CEST 2014</Captured_Time>
+        <Captured_Length>60</Captured_Length>
+      </Packet_Information>
+      <Ethernet_Frame>
+        <Frame_Type>2054</Frame_Type>
+        <Source_MAC>00:25:22:60:23:3c</Source_MAC>
+        <Destination_MAC>ff:ff:ff:ff:ff:ff</Destination_MAC>
+      </Ethernet_Frame>
+      <ARP_RARP>
+        <Hardware_Type>Ethernet (1)</Hardware_Type>
+        <Protocol_Type>IP (2048)</Protocol_Type>
+        <Hardware_Address_Length>6</Hardware_Address_Length>
+        <Protocol_Address_Length>4</Protocol_Address_Length>
+        <Operation>ARP Request</Operation>
+        <Sender_Hardware_Address>00:25:22:60:23:3c</Sender_Hardware_Address>
+        <Sender_Protocol_Address>/10.10.10.3</Sender_Protocol_Address>
+        <Target_Hardware_Address>00:00:00:00:00:00</Target_Hardware_Address>
+        <Target_Protocol_Address>/10.10.10.10</Target_Protocol_Address>
+      </ARP_RARP>
+  </Packet>
+  <Packet Numero="6">
+      <Packet_Information>
+        <Captured_Time>Tue Jul 01 00:25:49 CEST 2014</Captured_Time>
+        <Captured_Length>60</Captured_Length>
+      </Packet_Information>
+      <Ethernet_Frame>
+        <Frame_Type>2054</Frame_Type>
+        <Source_MAC>00:25:22:60:23:3c</Source_MAC>
+        <Destination_MAC>ff:ff:ff:ff:ff:ff</Destination_MAC>
+      </Ethernet_Frame>
+      <ARP_RARP>
+        <Hardware_Type>Ethernet (1)</Hardware_Type>
+        <Protocol_Type>IP (2048)</Protocol_Type>
+        <Hardware_Address_Length>6</Hardware_Address_Length>
+        <Protocol_Address_Length>4</Protocol_Address_Length>
+        <Operation>ARP Request</Operation>
+        <Sender_Hardware_Address>00:25:22:60:23:3c</Sender_Hardware_Address>
+        <Sender_Protocol_Address>/10.10.10.3</Sender_Protocol_Address>
+        <Target_Hardware_Address>00:00:00:00:00:00</Target_Hardware_Address>
+        <Target_Protocol_Address>/10.10.10.10</Target_Protocol_Address>
+      </ARP_RARP>
+  </Packet>
+  <Packet Numero="7">
+      <Packet_Information>
+        <Captured_Time>Tue Jul 01 00:25:50 CEST 2014</Captured_Time>
+        <Captured_Length>60</Captured_Length>
+      </Packet_Information>
+      <Ethernet_Frame>
+        <Frame_Type>2054</Frame_Type>
+        <Source_MAC>00:25:22:60:23:3c</Source_MAC>
+        <Destination_MAC>ff:ff:ff:ff:ff:ff</Destination_MAC>
+      </Ethernet_Frame>
+      <ARP_RARP>
+        <Hardware_Type>Ethernet (1)</Hardware_Type>
+        <Protocol_Type>IP (2048)</Protocol_Type>
+        <Hardware_Address_Length>6</Hardware_Address_Length>
+        <Protocol_Address_Length>4</Protocol_Address_Length>
+        <Operation>ARP Request</Operation>
+        <Sender_Hardware_Address>00:25:22:60:23:3c</Sender_Hardware_Address>
+        <Sender_Protocol_Address>/10.10.10.3</Sender_Protocol_Address>
+        <Target_Hardware_Address>00:00:00:00:00:00</Target_Hardware_Address>
+        <Target_Protocol_Address>/10.10.10.10</Target_Protocol_Address>
+      </ARP_RARP>
+  </Packet>
+  <Packet Numero="8">
+      <Packet_Information>
+        <Captured_Time>Tue Jul 01 00:25:51 CEST 2014</Captured_Time>
+        <Captured_Length>60</Captured_Length>
+      </Packet_Information>
+      <Ethernet_Frame>
+        <Frame_Type>2054</Frame_Type>
+        <Source_MAC>00:25:22:60:23:3c</Source_MAC>
+        <Destination_MAC>ff:ff:ff:ff:ff:ff</Destination_MAC>
+      </Ethernet_Frame>
+      <ARP_RARP>
+        <Hardware_Type>Ethernet (1)</Hardware_Type>
+        <Protocol_Type>IP (2048)</Protocol_Type>
+        <Hardware_Address_Length>6</Hardware_Address_Length>
+        <Protocol_Address_Length>4</Protocol_Address_Length>
+        <Operation>ARP Request</Operation>
+        <Sender_Hardware_Address>00:25:22:60:23:3c</Sender_Hardware_Address>
+        <Sender_Protocol_Address>/10.10.10.3</Sender_Protocol_Address>
+        <Target_Hardware_Address>00:00:00:00:00:00</Target_Hardware_Address>
+        <Target_Protocol_Address>/10.10.10.10</Target_Protocol_Address>
+      </ARP_RARP>
+  </Packet>
+  <Packet Numero="9">
+      <Packet_Information>
+        <Captured_Time>Tue Jul 01 00:26:20 CEST 2014</Captured_Time>
+        <Captured_Length>248</Captured_Length>
+      </Packet_Information>
+      <Ethernet_Frame>
+        <Frame_Type>2048</Frame_Type>
+        <Source_MAC>00:25:22:60:23:3c</Source_MAC>
+        <Destination_MAC>ff:ff:ff:ff:ff:ff</Destination_MAC>
+      </Ethernet_Frame>
+      <IP_v4>
+        <Version>4</Version>
+        <TOS_Priority>0</TOS_Priority>
+        <TOS_Throughput>false</TOS_Throughput>
+        <TOS_Reliability>false</TOS_Reliability>
+        <Length>234</Length>
+        <Identification>1131</Identification>
+        <Fragment_Dont_Fragment>false</Fragment_Dont_Fragment>
+        <Fragment_More_Fragment>false</Fragment_More_Fragment>
+        <Fragment_Offset>0</Fragment_Offset>
+        <Time_To_Live>64</Time_To_Live>
+        <Protocol>17</Protocol>
+        <Source_IP>10.10.10.3</Source_IP>
+        <Destination_IP>10.10.10.255</Destination_IP>
+        <Source_Host_Name>/10.10.10.3</Source_Host_Name>
+        <Destination_Host_Name>/10.10.10.255</Destination_Host_Name>
+      </IP_v4>
+      <UDP>
+        <Source_Port>138</Source_Port>
+        <Destination_Port>138</Destination_Port>
+        <Packet_Length>214</Packet_Length>
+      </UDP>
+  </Packet>
+</Captura>

@@ -1,0 +1,401 @@
+
+package dominio.pcapDumper;
+
+import java.io.IOException;
+import java.io.PrintStream;
+
+import dominio.export.xml.CrearXML;
+import jpcap.JpcapCaptor;
+import jpcap.JpcapWriter;
+import jpcap.PacketReceiver;
+import jpcap.packet.Packet;
+
+class SavePacketHandler
+  implements PacketReceiver
+{
+  private JpcapWriter file;
+  JpcapCaptor jpcap;
+  JpcapCaptor jpcap_writer;
+  public long time;
+  public long space;
+  private SaveTime STime;
+  private SaveSpace SSpace;
+  public SaveFileName SFName;
+  public String strFile;
+  public String auxStrFile;
+  public long contPacket;
+  public long numPacket;
+  public CountPacketHandler RCountPH;
+  public Captura venpadre;
+  static long contSpaceLen;
+  private boolean controlPacket;
+  private boolean multiFile = false;
+  private boolean otroFile = false;
+  private Thread captureThread;
+  
+   
+  public SavePacketHandler(Captura cap, SaveFileName SFN, CountPacketHandler CPH, JpcapCaptor jpcap)
+  {
+    this.jpcap = jpcap;
+    this.venpadre = cap;
+    String aux = "./files/Capturas";
+    String strF = "capturaJpacpLib.pcap";
+    
+
+
+    SFN.setSaveFileName(aux, strF);
+    this.SFName = SFN;
+    
+    setTime(0);
+    setSpace(0);
+    setPila(0);
+    setFile(this.SFName.getFile());
+    
+    setNumPacket(0L);
+    setContPacket(0L);
+    this.RCountPH = CPH;
+    contSpaceLen = 0L;
+    this.controlPacket = false;
+  }
+  
+  public SavePacketHandler(Captura cap, SaveFileName SFN, CountPacketHandler CPH, JpcapCaptor jpcap, String fullPath)
+  {
+    this.jpcap = jpcap;
+    this.venpadre = cap;
+    
+    SFN.setSaveFileName(fullPath);
+    this.SFName = SFN;
+    
+    setTime(0L);
+    setSpace(0L);
+    setPila(0);
+    setFile(this.SFName.getFile());
+    
+    setNumPacket(0L);
+    setContPacket(0L);
+    this.RCountPH = CPH;
+    contSpaceLen = 0L;
+    this.controlPacket = false;
+  }
+  
+  public SavePacketHandler(SaveFileName SFN, String fullPath)
+  {
+    this.SFName = SFN;
+    this.SFName.setSaveFileName(fullPath);
+    setTime(0L);
+    setSpace(0L);
+    setPila(0);
+    setFile(this.SFName.getFile());
+    setContPacket(0L);
+    this.RCountPH = new CountPacketHandler();
+    contSpaceLen = 0L;
+    this.controlPacket = false;
+  }
+  
+  public void runHilos()
+  {
+    if (getTime() != 0L)
+    {
+      this.STime = new SaveTime(this, getTime(), this.SFName);
+      this.STime.start();
+      this.multiFile = true;
+    }
+    else if (getSpace() != 0L)
+    {
+      if (getNumPacket() != 0L)
+      {
+        this.captureThread = new Thread(new Runnable()
+        {
+          public void run()
+          {
+            while (SavePacketHandler.this.captureThread != null) {}
+          }
+        });
+        this.captureThread.setPriority(1);
+        this.captureThread.start();
+      }
+      this.SFName.setNext();
+      setTcpDumpWriter_first(this.SFName.getNameTime());
+      this.SFName.saveStateMulti(true);
+      System.out.println("\n----> " + this.SFName.getNameTime());
+      this.multiFile = true;
+    }
+    else
+    {
+      if (getNumPacket() != 0L)
+      {
+        this.captureThread = new Thread(new Runnable()
+        {
+          public void run()
+          {
+            while (SavePacketHandler.this.captureThread != null) {}
+          }
+        });
+        this.captureThread.setPriority(1);
+        this.captureThread.start();
+      }
+      setTcpDumpWriter_first();
+      this.SFName.saveState(true);
+    }
+  }
+  
+  public void stopHilos()
+  {
+    if (this.STime != null) {
+      this.STime.stop();
+    }
+    if (this.SSpace != null) {
+      this.captureThread.stop();
+    }
+    if (this.captureThread != null) {
+      this.captureThread.stop();
+    }
+  }
+  
+  public void setTcpDumpWriter_first()
+  {
+    try
+    {
+      this.file = JpcapWriter.openDumpFile(this.jpcap_writer, getFullName());
+    }
+    catch (IOException e)
+    {
+      e.printStackTrace();
+    }
+  }
+  
+  public void setTcpDumpWriter()
+  {
+    try
+    {
+      this.file.close();
+      this.file = JpcapWriter.openDumpFile(this.jpcap_writer, getFullName());
+      resetSpaceLen();
+      this.otroFile = false;
+    }
+    catch (IOException e)
+    {
+      e.printStackTrace();
+    }
+  }
+  
+  public void setTcpDumpWriter(String strAuxName)
+  {
+    try
+    {
+      setAuxFile(strAuxName);
+      this.otroFile = true;
+      
+
+      resetSpaceLen();
+    }
+    catch (Exception e)
+    {
+      e.printStackTrace();
+    }
+    setFile(strAuxName);
+  }
+  
+  public void setTcpDumpWriter_first(String strAuxName)
+  {
+    try
+    {
+      setAuxFile(strAuxName);
+      this.file = JpcapWriter.openDumpFile(this.jpcap_writer, getAuxFullName());
+      resetSpaceLen();
+    }
+    catch (IOException e)
+    {
+      e.printStackTrace();
+    }
+    setFile(strAuxName);
+  }
+  
+  public void receivePacket(Packet packet)
+  {
+    try
+    {
+      nextContPacket();
+      System.out.print(".");
+      if (this.controlPacket) {
+        this.RCountPH.receivePacket(packet);
+      }
+      /*Aqui es donde escribe el paquete en el fichero.*/
+      this.file.writePacket(packet);
+      /*Aqui es donde guardaremos el paquete en un XML*/
+     
+      
+      
+      System.out.println(packet);
+      contSpaceLen += packet.len;
+      if (this.otroFile) {
+        setTcpDumpWriter();
+      }
+      /*Una vez grabado podemos vaciar el buffer de memoria*/ 
+     System.in.skip(System.in.available());
+      if ((contSpaceLen >= getSpace()) && (getSpace() != 0))
+      {
+        this.SFName.setNext();
+        if (this.SFName.getNext() == -1)
+        {
+          stopCaptura();
+        }
+        else
+        {
+          setTcpDumpWriter(this.SFName.getNameTime());
+          this.SFName.saveStateMulti(true);
+          System.out.println("\n----> " + this.SFName.getNameTime());
+        }
+      }
+      if ((getContPacket() >= getNumPacket()) && (getNumPacket() != 0)) {
+        stopCaptura();
+      }
+    }
+    catch (Exception exceptionfile)
+    {
+      exceptionfile.printStackTrace();
+    }
+  }
+  
+
+
+public void stopCaptura()
+  {
+	  try
+	  {
+		  System.in.skip(System.in.available());
+		  if (this.multiFile) {
+			  this.SFName.saveStateMulti(false);
+		  } else {
+			  this.SFName.saveState(false);
+		  }
+		  setSpace(0);
+		  getVenPadre().stopCaptureThread();
+		  this.file.close();
+	  }catch (Exception exceptionfile){
+      exceptionfile.printStackTrace();
+    }
+  }
+  
+  public Captura getVenPadre()
+  {
+    return this.venpadre;
+  }
+  
+  public void setTime(long time)
+  {
+    this.time = time;
+  }
+  
+  public long getTime()
+  {
+    return this.time;
+  }
+  
+  public void setSpace(long space)
+  {
+    this.space = space;
+  }
+  
+  public long getSpace()
+  {
+    return this.space;
+  }
+  
+  public void setFile(String file)
+  {
+    this.strFile = file;
+  }
+  
+  public String getFile()
+  {
+    return this.strFile;
+  }
+  
+  public void setPila(int pila)
+  {
+    this.SFName.setPila(pila);
+  }
+  
+  public int getPila()
+  {
+    return this.SFName.getPila();
+  }
+  
+  public void setMaximo(int max)
+  {
+    this.SFName.setMaximo(max);
+  }
+  
+  public int getMaximo()
+  {
+    return this.SFName.getMaximo();
+  }
+  
+  public void setAuxFile(String file)
+  {
+    this.auxStrFile = file;
+  }
+  
+  public String getAuxFile()
+  {
+    return this.auxStrFile;
+  }
+  
+  public String getFullName()
+  {
+    return this.SFName.getPath() + this.SFName.getSeparator() + getFile();
+  }
+  
+  public String getAuxFullName()
+  {
+    return this.SFName.getPath() + this.SFName.getSeparator() + getAuxFile();
+  }
+  
+  public void setNumPacket(long aux)
+  {
+    this.numPacket = aux;
+  }
+  
+  public long getNumPacket()
+  {
+    return this.numPacket;
+  }
+  
+  public void setContPacket(long aux)
+  {
+    this.contPacket = aux;
+  }
+  
+  public long getContPacket()
+  {
+    return this.contPacket;
+  }
+  
+  public void nextContPacket()
+  {
+    this.contPacket += 1;
+  }
+  
+  public void resetSpaceLen()
+  {
+    contSpaceLen = 0;
+  }
+  
+  public long getspaceLen()
+  {
+    return contSpaceLen;
+  }
+  
+  public void setControlPacket(boolean aux)
+  {
+    this.controlPacket = aux;
+  }
+  
+  public void setWriter(JpcapCaptor jWriter)
+  {
+    this.jpcap_writer = jWriter;
+  }
+
+
+}

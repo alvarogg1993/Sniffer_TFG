@@ -1,0 +1,1173 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns:o="urn:schemas-microsoft-com:office:office"
+xmlns:w="urn:schemas-microsoft-com:office:word"
+xmlns="http://www.w3.org/TR/REC-html40">
+
+<head>
+<meta http-equiv=Content-Type content="text/html; charset=windows-1252">
+<meta name=ProgId content=Word.Document>
+<meta name=Generator content="Microsoft Word 10">
+<meta name=Originator content="Microsoft Word 10">
+<link rel=File-List href="tcpdump_archivos/filelist.xml">
+<title>Pequeño tutorial de Windump / Tcpdump</title>
+<!--[if gte mso 9]><xml>
+ <o:DocumentProperties>
+  <o:Author>diego</o:Author>
+  <o:Template>Normal</o:Template>
+  <o:LastAuthor>diego</o:LastAuthor>
+  <o:Revision>3</o:Revision>
+  <o:TotalTime>14</o:TotalTime>
+  <o:Created>2005-09-12T21:45:00Z</o:Created>
+  <o:LastSaved>2005-09-12T22:06:00Z</o:LastSaved>
+  <o:Pages>1</o:Pages>
+  <o:Words>1158</o:Words>
+  <o:Characters>6371</o:Characters>
+  <o:Lines>53</o:Lines>
+  <o:Paragraphs>15</o:Paragraphs>
+  <o:CharactersWithSpaces>7514</o:CharactersWithSpaces>
+  <o:Version>10.2625</o:Version>
+ </o:DocumentProperties>
+</xml><![endif]--><!--[if gte mso 9]><xml>
+ <w:WordDocument>
+  <w:Zoom>120</w:Zoom>
+  <w:SpellingState>Clean</w:SpellingState>
+  <w:HyphenationZone>21</w:HyphenationZone>
+  <w:BrowserLevel>MicrosoftInternetExplorer4</w:BrowserLevel>
+ </w:WordDocument>
+</xml><![endif]-->
+<style>
+<!--
+ /* Style Definitions */
+ p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{mso-style-parent:"";
+	margin:0cm;
+	margin-bottom:.0001pt;
+	mso-pagination:widow-orphan;
+	font-size:12.0pt;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:"Times New Roman";}
+h1
+	{mso-margin-top-alt:auto;
+	margin-right:0cm;
+	mso-margin-bottom-alt:auto;
+	margin-left:0cm;
+	mso-pagination:widow-orphan;
+	mso-outline-level:1;
+	font-size:24.0pt;
+	font-family:"Times New Roman";
+	font-weight:bold;}
+a:link, span.MsoHyperlink
+	{color:blue;
+	text-decoration:underline;
+	text-underline:single;}
+a:visited, span.MsoHyperlinkFollowed
+	{color:blue;
+	text-decoration:underline;
+	text-underline:single;}
+p
+	{mso-margin-top-alt:auto;
+	margin-right:0cm;
+	mso-margin-bottom-alt:auto;
+	margin-left:0cm;
+	mso-pagination:widow-orphan;
+	font-size:12.0pt;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:"Times New Roman";}
+pre
+	{margin:0cm;
+	margin-bottom:.0001pt;
+	mso-pagination:widow-orphan;
+	tab-stops:45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt;
+	font-size:10.0pt;
+	font-family:"Courier New";
+	mso-fareast-font-family:"Times New Roman";}
+span.SpellE
+	{mso-style-name:"";
+	mso-spl-e:yes;}
+@page Section1
+	{size:595.3pt 841.9pt;
+	margin:70.85pt 3.0cm 70.85pt 3.0cm;
+	mso-header-margin:35.4pt;
+	mso-footer-margin:35.4pt;
+	mso-paper-source:0;}
+div.Section1
+	{page:Section1;}
+ /* List Definitions */
+ @list l0
+	{mso-list-id:87047114;
+	mso-list-template-ids:-157768286;}
+@list l0:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:36.0pt;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;
+	mso-ansi-font-size:10.0pt;
+	font-family:Symbol;}
+@list l0:level2
+	{mso-level-number-format:bullet;
+	mso-level-text:o;
+	mso-level-tab-stop:72.0pt;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;
+	mso-ansi-font-size:10.0pt;
+	font-family:"Courier New";
+	mso-bidi-font-family:"Times New Roman";}
+@list l1
+	{mso-list-id:182863633;
+	mso-list-template-ids:391708058;}
+@list l1:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:36.0pt;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;
+	mso-ansi-font-size:10.0pt;
+	font-family:Symbol;}
+@list l2
+	{mso-list-id:197934898;
+	mso-list-template-ids:1051126204;}
+@list l2:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:36.0pt;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;
+	mso-ansi-font-size:10.0pt;
+	font-family:Symbol;}
+@list l2:level2
+	{mso-level-number-format:bullet;
+	mso-level-text:o;
+	mso-level-tab-stop:72.0pt;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;
+	mso-ansi-font-size:10.0pt;
+	font-family:"Courier New";
+	mso-bidi-font-family:"Times New Roman";}
+@list l3
+	{mso-list-id:270283922;
+	mso-list-template-ids:-39572484;}
+@list l3:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:36.0pt;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;
+	mso-ansi-font-size:10.0pt;
+	font-family:Symbol;}
+@list l4
+	{mso-list-id:284124540;
+	mso-list-template-ids:104621110;}
+@list l4:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:36.0pt;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;
+	mso-ansi-font-size:10.0pt;
+	font-family:Symbol;}
+@list l4:level2
+	{mso-level-number-format:bullet;
+	mso-level-text:o;
+	mso-level-tab-stop:72.0pt;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;
+	mso-ansi-font-size:10.0pt;
+	font-family:"Courier New";
+	mso-bidi-font-family:"Times New Roman";}
+@list l5
+	{mso-list-id:303893900;
+	mso-list-template-ids:-1130469050;}
+@list l5:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:36.0pt;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;
+	mso-ansi-font-size:10.0pt;
+	font-family:Symbol;}
+@list l6
+	{mso-list-id:426735774;
+	mso-list-template-ids:1285557624;}
+@list l6:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:36.0pt;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;
+	mso-ansi-font-size:10.0pt;
+	font-family:Symbol;}
+@list l6:level2
+	{mso-level-number-format:bullet;
+	mso-level-text:o;
+	mso-level-tab-stop:72.0pt;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;
+	mso-ansi-font-size:10.0pt;
+	font-family:"Courier New";
+	mso-bidi-font-family:"Times New Roman";}
+@list l7
+	{mso-list-id:448665675;
+	mso-list-template-ids:942588568;}
+@list l7:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:36.0pt;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;
+	mso-ansi-font-size:10.0pt;
+	font-family:Symbol;}
+@list l7:level2
+	{mso-level-tab-stop:72.0pt;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;}
+@list l7:level3
+	{mso-level-tab-stop:108.0pt;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;}
+@list l7:level4
+	{mso-level-tab-stop:144.0pt;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;}
+@list l7:level5
+	{mso-level-tab-stop:180.0pt;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;}
+@list l7:level6
+	{mso-level-tab-stop:216.0pt;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;}
+@list l7:level7
+	{mso-level-tab-stop:252.0pt;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;}
+@list l7:level8
+	{mso-level-tab-stop:288.0pt;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;}
+@list l7:level9
+	{mso-level-tab-stop:324.0pt;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;}
+@list l8
+	{mso-list-id:514924212;
+	mso-list-template-ids:217191690;}
+@list l8:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:36.0pt;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;
+	mso-ansi-font-size:10.0pt;
+	font-family:Symbol;}
+@list l9
+	{mso-list-id:590823293;
+	mso-list-template-ids:-462551068;}
+@list l9:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:36.0pt;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;
+	mso-ansi-font-size:10.0pt;
+	font-family:Symbol;}
+@list l10
+	{mso-list-id:595141401;
+	mso-list-template-ids:1832259884;}
+@list l10:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:36.0pt;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;
+	mso-ansi-font-size:10.0pt;
+	font-family:Symbol;}
+@list l10:level2
+	{mso-level-number-format:bullet;
+	mso-level-text:o;
+	mso-level-tab-stop:72.0pt;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;
+	mso-ansi-font-size:10.0pt;
+	font-family:"Courier New";
+	mso-bidi-font-family:"Times New Roman";}
+@list l11
+	{mso-list-id:603610001;
+	mso-list-template-ids:90210092;}
+@list l11:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:36.0pt;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;
+	mso-ansi-font-size:10.0pt;
+	font-family:Symbol;}
+@list l12
+	{mso-list-id:707141969;
+	mso-list-template-ids:-1094694334;}
+@list l12:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:36.0pt;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;
+	mso-ansi-font-size:10.0pt;
+	font-family:Symbol;}
+@list l12:level2
+	{mso-level-number-format:bullet;
+	mso-level-text:o;
+	mso-level-tab-stop:72.0pt;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;
+	mso-ansi-font-size:10.0pt;
+	font-family:"Courier New";
+	mso-bidi-font-family:"Times New Roman";}
+@list l13
+	{mso-list-id:1331180528;
+	mso-list-template-ids:1478271412;}
+@list l13:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:36.0pt;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;
+	mso-ansi-font-size:10.0pt;
+	font-family:Symbol;}
+@list l14
+	{mso-list-id:1398360585;
+	mso-list-template-ids:-143870894;}
+@list l14:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:36.0pt;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;
+	mso-ansi-font-size:10.0pt;
+	font-family:Symbol;}
+@list l14:level2
+	{mso-level-number-format:bullet;
+	mso-level-text:o;
+	mso-level-tab-stop:72.0pt;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;
+	mso-ansi-font-size:10.0pt;
+	font-family:"Courier New";
+	mso-bidi-font-family:"Times New Roman";}
+@list l15
+	{mso-list-id:1424378661;
+	mso-list-template-ids:-1621580700;}
+@list l15:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:36.0pt;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;
+	mso-ansi-font-size:10.0pt;
+	font-family:Symbol;}
+@list l16
+	{mso-list-id:1427769931;
+	mso-list-template-ids:1051744144;}
+@list l16:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:36.0pt;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;
+	mso-ansi-font-size:10.0pt;
+	font-family:Symbol;}
+@list l16:level2
+	{mso-level-number-format:bullet;
+	mso-level-text:o;
+	mso-level-tab-stop:72.0pt;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;
+	mso-ansi-font-size:10.0pt;
+	font-family:"Courier New";
+	mso-bidi-font-family:"Times New Roman";}
+@list l17
+	{mso-list-id:1547789699;
+	mso-list-template-ids:1491613396;}
+@list l17:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:36.0pt;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;
+	mso-ansi-font-size:10.0pt;
+	font-family:Symbol;}
+@list l18
+	{mso-list-id:1601261000;
+	mso-list-template-ids:1902557804;}
+@list l18:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:36.0pt;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;
+	mso-ansi-font-size:10.0pt;
+	font-family:Symbol;}
+@list l18:level2
+	{mso-level-number-format:bullet;
+	mso-level-text:o;
+	mso-level-tab-stop:72.0pt;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;
+	mso-ansi-font-size:10.0pt;
+	font-family:"Courier New";
+	mso-bidi-font-family:"Times New Roman";}
+@list l19
+	{mso-list-id:1612781233;
+	mso-list-template-ids:-2129362404;}
+@list l19:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:36.0pt;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;
+	mso-ansi-font-size:10.0pt;
+	font-family:Symbol;}
+@list l19:level2
+	{mso-level-number-format:bullet;
+	mso-level-text:o;
+	mso-level-tab-stop:72.0pt;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;
+	mso-ansi-font-size:10.0pt;
+	font-family:"Courier New";
+	mso-bidi-font-family:"Times New Roman";}
+@list l20
+	{mso-list-id:1618411813;
+	mso-list-template-ids:999474628;}
+@list l20:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:36.0pt;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;
+	mso-ansi-font-size:10.0pt;
+	font-family:Symbol;}
+@list l20:level2
+	{mso-level-number-format:bullet;
+	mso-level-text:o;
+	mso-level-tab-stop:72.0pt;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;
+	mso-ansi-font-size:10.0pt;
+	font-family:"Courier New";
+	mso-bidi-font-family:"Times New Roman";}
+@list l21
+	{mso-list-id:1730617407;
+	mso-list-template-ids:2042016420;}
+@list l21:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:36.0pt;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;
+	mso-ansi-font-size:10.0pt;
+	font-family:Symbol;}
+@list l21:level2
+	{mso-level-number-format:bullet;
+	mso-level-text:o;
+	mso-level-tab-stop:72.0pt;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;
+	mso-ansi-font-size:10.0pt;
+	font-family:"Courier New";
+	mso-bidi-font-family:"Times New Roman";}
+@list l22
+	{mso-list-id:1794906082;
+	mso-list-template-ids:-557837038;}
+@list l22:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:36.0pt;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;
+	mso-ansi-font-size:10.0pt;
+	font-family:Symbol;}
+@list l23
+	{mso-list-id:1802528164;
+	mso-list-template-ids:205154464;}
+@list l23:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:36.0pt;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;
+	mso-ansi-font-size:10.0pt;
+	font-family:Symbol;}
+@list l24
+	{mso-list-id:1817523833;
+	mso-list-template-ids:566637166;}
+@list l24:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:36.0pt;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;
+	mso-ansi-font-size:10.0pt;
+	font-family:Symbol;}
+@list l24:level2
+	{mso-level-tab-stop:72.0pt;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;}
+@list l24:level3
+	{mso-level-tab-stop:108.0pt;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;}
+@list l24:level4
+	{mso-level-tab-stop:144.0pt;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;}
+@list l24:level5
+	{mso-level-tab-stop:180.0pt;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;}
+@list l24:level6
+	{mso-level-tab-stop:216.0pt;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;}
+@list l24:level7
+	{mso-level-tab-stop:252.0pt;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;}
+@list l24:level8
+	{mso-level-tab-stop:288.0pt;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;}
+@list l24:level9
+	{mso-level-tab-stop:324.0pt;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;}
+@list l25
+	{mso-list-id:1863007181;
+	mso-list-template-ids:-1315151146;}
+@list l25:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:36.0pt;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;
+	mso-ansi-font-size:10.0pt;
+	font-family:Symbol;}
+@list l26
+	{mso-list-id:2031446711;
+	mso-list-template-ids:1455606238;}
+@list l26:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:36.0pt;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;
+	mso-ansi-font-size:10.0pt;
+	font-family:Symbol;}
+@list l26:level2
+	{mso-level-number-format:bullet;
+	mso-level-text:o;
+	mso-level-tab-stop:72.0pt;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;
+	mso-ansi-font-size:10.0pt;
+	font-family:"Courier New";
+	mso-bidi-font-family:"Times New Roman";}
+@list l27
+	{mso-list-id:2071227048;
+	mso-list-template-ids:-589147258;}
+@list l27:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:36.0pt;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;
+	mso-ansi-font-size:10.0pt;
+	font-family:Symbol;}
+@list l27:level2
+	{mso-level-number-format:bullet;
+	mso-level-text:o;
+	mso-level-tab-stop:72.0pt;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;
+	mso-ansi-font-size:10.0pt;
+	font-family:"Courier New";
+	mso-bidi-font-family:"Times New Roman";}
+@list l27:level3
+	{mso-level-tab-stop:108.0pt;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;}
+@list l27:level4
+	{mso-level-tab-stop:144.0pt;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;}
+@list l27:level5
+	{mso-level-tab-stop:180.0pt;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;}
+@list l27:level6
+	{mso-level-tab-stop:216.0pt;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;}
+@list l27:level7
+	{mso-level-tab-stop:252.0pt;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;}
+@list l27:level8
+	{mso-level-tab-stop:288.0pt;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;}
+@list l27:level9
+	{mso-level-tab-stop:324.0pt;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;}
+ol
+	{margin-bottom:0cm;}
+ul
+	{margin-bottom:0cm;}
+-->
+</style>
+<!--[if gte mso 10]>
+<style>
+ /* Style Definitions */
+ table.MsoNormalTable
+	{mso-style-name:"Tabla normal";
+	mso-tstyle-rowband-size:0;
+	mso-tstyle-colband-size:0;
+	mso-style-noshow:yes;
+	mso-style-parent:"";
+	mso-padding-alt:0cm 5.4pt 0cm 5.4pt;
+	mso-para-margin:0cm;
+	mso-para-margin-bottom:.0001pt;
+	mso-pagination:widow-orphan;
+	font-size:10.0pt;
+	font-family:"Times New Roman";}
+</style>
+<![endif]-->
+<meta name=lang content=es>
+<meta name=description content="Breve tutorial sobre tcpdump">
+</head>
+
+<body lang=ES link=blue vlink=blue style='tab-interval:35.4pt'>
+
+<div class=Section1>
+
+<p><b style='mso-bidi-font-weight:normal'><span style='font-size:14.0pt'>Filtros
+Avanzados<o:p></o:p></span></b></p>
+
+<p>Los 3 modificadores posibles son: </p>
+
+<ul type=disc>
+ <li class=MsoNormal style='mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
+     mso-list:l7 level1 lfo3;tab-stops:list 36.0pt'><i>tipo</i>. Puede ser <span
+     class=SpellE><b>host</b></span>, <b>net</b> o <span class=SpellE><b>port</b></span>.
+     indican respectivamente una maquina, por ejemplo <span class=SpellE><b>host</b></span><b>
+     192.168.1.1</b> , una red completa, por ejemplo <b>net 192.168</b>, o un
+     puerto concreto, por ejemplo <span class=SpellE><b>port</b></span><b> 22</b>.
+     Por defecto se asume el tipo <span class=SpellE><b>host</b></span>.</li>
+ <li class=MsoNormal style='mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
+     mso-list:l7 level1 lfo3;tab-stops:list 36.0pt'><span class=SpellE><i>dir</i></span>.
+     Especifica desde o hacia donde se va a mirar el flujo de datos. Tenemos <span
+     class=SpellE><b>src</b></span> o <span class=SpellE><b>dst</b></span> y
+     podemos combinarlos con <span class=SpellE><b>or</b></span> y <span
+     class=SpellE><b>and</b></span>. Para el caso de de protocolos punto a
+     punto podemos sustituir por <span class=SpellE><b>inbound</b></span> o <span
+     class=SpellE><b>outbound</b>.Por</span> ejemplo si queremos la dirección
+     de destino 10.10.10.2 y la de origen 192.168.1.2, el filtro <span
+     class=SpellE>serma</span> <span class=SpellE><b>dst</b></span><b>
+     10.10.10.2 <span class=SpellE>and</span> <span class=SpellE>src</span>
+     192.168.1.2</b> . Si se quiere que sea la dirección destino 192.168.1.1 o
+     la dirección origen 192.168.1.2, <span class=SpellE>serma</span> <span
+     class=SpellE><b>dst</b></span><b> 192.168.1.1 <span class=SpellE>or</span>
+     <span class=SpellE>src</span> 192.168.1.2</b>. Pueden seguirse combinando
+     con la ayuda de paréntesis o las palabras <span class=SpellE><b>or</b></span>
+     y <span class=SpellE><b>and</b></span>. Si no existe se supone <span
+     class=SpellE><b>src</b></span><b> <span class=SpellE>or</span> <span
+     class=SpellE>dst</span></b>. Por supuesto, esto se puede combinar con los
+     modificadores de tipo anteriores. </li>
+ <li class=MsoNormal style='mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
+     mso-list:l7 level1 lfo3;tab-stops:list 36.0pt'><span class=SpellE><i>proto</i></span>.
+     En este caso es el protocolo que queremos capturar. puede ser <span
+     class=SpellE><b>tcp</b>,<b>udp</b>,<b>ip</b>,<b>ether</b></span> (en este
+     caso captura tramas a nivel de <span class=SpellE>enlace,<b>arp</b></span>
+     (peticiones <span class=SpellE>arp</span>), <span class=SpellE><b>rarp</b></span>
+     (<span class=SpellE>petciones</span> reverse-<span class=SpellE>arp</span>),<span
+     class=SpellE><b>fddi</b></span>(para redes FDDI, pero realmente el
+     encapsulado es igual al <span class=SpellE>etherSiempre</span> podemos
+     combinar expresiones con ayuda de paréntesis. </li>
+</ul>
+
+<p>A continuación se dan las primitivas que pueden usarse. Lo que <span
+class=SpellE>aperece</span> entre <i>[</i> y <i>]</i> es opcional, y el <i>|</i>
+significa &quot;o&quot;. El resto se tiene que poner si queremos poner el
+filtro con el comportamiento. </p>
+
+<ul type=disc>
+ <li class=MsoNormal style='mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
+     mso-list:l27 level1 lfo6;tab-stops:list 36.0pt'><b>[<span class=SpellE>dst|src</span>]
+     <span class=SpellE>host</span> maquina</b>. Cierto si la dirección destino
+     u origen del paquete es <b>maquina</b> lo cual puede ser una dirección <span
+     class=SpellE>IPv4</span> (o <span class=SpellE>IPv6</span> si se ha
+     compilado soporte para el mismo), o un nombre del DNS. Si queremos
+     restringir a dirección destino podemos restringir con <span class=SpellE><b>dst</b></span>.
+     Para dirección origen <span class=SpellE><b>src</b></span>. </li>
+</ul>
+
+<blockquote style='margin-top:5.0pt;margin-bottom:5.0pt'>
+
+<p class=MsoNormal style='mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
+margin-left:36.0pt'><b>Ejemplos:</b> </p>
+
+<ul type=disc>
+ <ul type=circle>
+  <li class=MsoNormal style='mso-margin-top-alt:auto;mso-margin-bottom-alt:
+      auto;mso-list:l27 level2 lfo6;tab-stops:list 72.0pt'>Capturar el trafico
+      cuya IP origen sea 192.168.1.1</li>
+ </ul>
+</ul>
+
+<p class=MsoNormal style='mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
+margin-left:72.0pt'><b><span style='mso-spacerun:yes'> </span></b><span
+class=SpellE><b><span lang=EN-GB style='mso-ansi-language:EN-GB'>src</span></b></span><b><span
+lang=EN-GB style='mso-ansi-language:EN-GB'> host 192.168.1.1</span></b><span
+lang=EN-GB style='mso-ansi-language:EN-GB'><br>
+<b><span style='mso-spacerun:yes'> </span><span class=SpellE>src</span> host
+192.168.1.1</b> <o:p></o:p></span></p>
+
+<ul type=disc>
+ <ul type=circle>
+  <li class=MsoNormal style='mso-margin-top-alt:auto;mso-margin-bottom-alt:
+      auto;mso-list:l27 level2 lfo6;tab-stops:list 72.0pt'>Capturar todo el
+      tráfico cuya dirección origen o destino sea 192.168.1.2</li>
+ </ul>
+</ul>
+
+<p class=MsoNormal style='mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
+margin-left:72.0pt'><b><span style='mso-spacerun:yes'> </span><span
+class=SpellE>host</span> 192.168.1.2</b><br>
+<b><span style='mso-spacerun:yes'> </span><span class=SpellE>host</span>
+192.168.1.2</b> </p>
+
+</blockquote>
+
+<ul type=disc>
+ <li class=MsoNormal style='mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
+     mso-list:l27 level1 lfo6;tab-stops:list 36.0pt'><b><span lang=EN-GB
+     style='mso-ansi-language:EN-GB'>ether src|dst|host edir</span></b><span
+     lang=EN-GB style='mso-ansi-language:EN-GB'>. </span>Este filtro es cierto <span
+     class=SpellE>sm</span> la dirección origen (<span class=SpellE><b>src</b></span>),
+     la destino (<span class=SpellE><b>dst</b></span>) o el cualquiera de las
+     dos(<span class=SpellE><b>host</b></span>) coincide con <span
+     class=SpellE><b>edir</b></span>. Hacer notar que <span class=SpellE><b>src</b>,<b>dst</b></span>
+     o <span class=SpellE><b>host</b></span> es obligatorio especificarlo. </li>
+</ul>
+
+<blockquote style='margin-top:5.0pt;margin-bottom:5.0pt'>
+
+<p class=MsoNormal style='mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
+margin-left:36.0pt'><b>Ejemplos:</b> </p>
+
+<ul type=disc>
+ <ul type=circle>
+  <li class=MsoNormal style='mso-margin-top-alt:auto;mso-margin-bottom-alt:
+      auto;mso-list:l27 level2 lfo6;tab-stops:list 72.0pt'>Capturar el tráfico
+      con destino a la dirección <span class=SpellE>ethernet</span> 0:2:a5:<span
+      class=SpellE>ee:ec</span>:10.</li>
+ </ul>
+</ul>
+
+<p class=MsoNormal style='mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
+margin-left:72.0pt'><b><span style='mso-spacerun:yes'> </span></b><b><span
+lang=EN-GB style='mso-ansi-language:EN-GB'>ether <span class=SpellE>dst</span>
+0:2:a5:ee:ec:10</span></b><span lang=EN-GB style='mso-ansi-language:EN-GB'><br>
+<b><span style='mso-spacerun:yes'> </span>ether <span class=SpellE>dst</span>
+0:2:a5:ee:ec:10</b> <o:p></o:p></span></p>
+
+<ul type=disc>
+ <ul type=circle>
+  <li class=MsoNormal style='mso-margin-top-alt:auto;mso-margin-bottom-alt:
+      auto;mso-list:l27 level2 lfo6;tab-stops:list 72.0pt'>Capturar el tráfico
+      que vaya a la máquina cuya dirección MAC es 0:2:a5:<span class=SpellE>ee:ec</span>:10.</li>
+ </ul>
+</ul>
+
+<p class=MsoNormal style='mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
+margin-left:72.0pt'><b><span lang=EN-GB style='mso-ansi-language:EN-GB'>ether
+host 0:2:a5:ee:ec:10</span></b><span lang=EN-GB style='mso-ansi-language:EN-GB'><br>
+<span class=SpellE><b>ethert</b></span><b> host 0:2:a5:ee:ec:10</b> <o:p></o:p></span></p>
+
+</blockquote>
+
+<ul type=disc>
+ <li class=MsoNormal style='mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
+     mso-list:l27 level1 lfo6;tab-stops:list 36.0pt'><span class=SpellE><b>gateway</b></span><b>
+     maquina</b>. Cierto en caso de que el paquete use <b>maquina</b> como <span
+     class=SpellE>router</span>. <b>maquina</b> debe estar definida en <b>/<span
+     class=SpellE>etc</span>/<span class=SpellE>ethers</span></b> y <b>/<span
+     class=SpellE>etc</span>/<span class=SpellE>hosts</span></b>. Realmente los
+     paquetes que cumplen con esa condición son aquellos que tienen como
+     dirección <span class=SpellE>ethernet</span> destino <b>maquina</b>, pero
+     ni la dirección IP destino u origen es <b>maquina</b>.</li>
+ <li class=MsoNormal style='mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
+     mso-list:l27 level1 lfo6;tab-stops:list 36.0pt'><b>[<span class=SpellE>dst|src</span>]
+     net red</b>. Cierto en caso de que la red de la dirección destino, origen
+     o ambas sea <b>red</b>. El <span class=SpellE>parametro</span> <b>red</b>
+     puede ser una dirección numérica (por ejemplo 192.168.1.0) o bien un
+     nombre que se resuelve a dirección, en los <span class=SpellE>Unix</span>,
+     con ayuda del <b>/<span class=SpellE>etc</span>/<span class=SpellE>networks</span></b>.
+     Decir que también se admite el clásico direccionamiento CIDR. Podemos
+     especificar una mascara poniendo <b>red</b> como <b>net red <span
+     class=SpellE>mad</span> mascara</b> o bien usar <b>/</b>, <b>net red/bits</b>.
+     Hacer notar que el uso de <b>net ... <span class=SpellE>mask</span> </b>no
+     es compatible con direcciones <span class=SpellE>IPv6</span>. Si queremos
+     hacer referencia a la red destino usamos <span class=SpellE><b>dst</b></span>
+     como prefijo. Para la red origen usamos <span class=SpellE><b>dst</b></span>.
+     </li>
+</ul>
+
+<blockquote style='margin-top:5.0pt;margin-bottom:5.0pt'>
+
+<p class=MsoNormal style='mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
+margin-left:36.0pt'><b>Ejemplos:</b> </p>
+
+<ul type=disc>
+ <ul type=circle>
+  <li class=MsoNormal style='mso-margin-top-alt:auto;mso-margin-bottom-alt:
+      auto;mso-list:l27 level2 lfo6;tab-stops:list 72.0pt'>Capturar todo el
+      tráfico cuya red destino sea 192.168.1.0.</li>
+ </ul>
+</ul>
+
+<p class=MsoNormal style='mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
+margin-left:72.0pt'><span class=SpellE><b><span lang=EN-GB style='mso-ansi-language:
+EN-GB'>tcpdump</span></b></span><b><span lang=EN-GB style='mso-ansi-language:
+EN-GB'> <span class=SpellE>dst</span> net 192.168.1.0</span></b><span
+lang=EN-GB style='mso-ansi-language:EN-GB'><br>
+<span class=SpellE><b>windump</b></span><b> <span class=SpellE>dst</span> net
+192.168.1.0</b> <o:p></o:p></span></p>
+
+<ul type=disc>
+ <ul type=circle>
+  <li class=MsoNormal style='mso-margin-top-alt:auto;mso-margin-bottom-alt:
+      auto;mso-list:l27 level2 lfo6;tab-stops:list 72.0pt'>Capturar todo el
+      tráfico cuya red origen sea 192.168.1.0/28</li>
+ </ul>
+</ul>
+
+<p class=MsoNormal style='mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
+margin-left:72.0pt'><span class=SpellE><b><span lang=EN-GB style='mso-ansi-language:
+EN-GB'>tcpdump</span></b></span><b><span lang=EN-GB style='mso-ansi-language:
+EN-GB'> <span class=SpellE>src</span> net 192.168.1.0 mask 255.255.255.240</span></b><span
+lang=EN-GB style='mso-ansi-language:EN-GB'><br>
+<span class=SpellE><b>tcpdump</b></span><b> <span class=SpellE>src</span> net
+192.168.1.0/28</b><o:p></o:p></span></p>
+
+<ul type=disc>
+ <ul type=circle>
+  <li class=MsoNormal style='mso-margin-top-alt:auto;mso-margin-bottom-alt:
+      auto;mso-list:l27 level2 lfo6;tab-stops:list 72.0pt'>Capturar todo el
+      tráfico con origen o destino en la 10.0.0.0/24</li>
+ </ul>
+</ul>
+
+<p class=MsoNormal style='mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
+margin-left:72.0pt'><span class=SpellE><b>tcpdump</b></span><b> net 10.0.0.0/24</b><br>
+<span class=SpellE><b>tcpdump</b></span><b> net 10.0.0.0 <span class=SpellE>mask</span>
+255.255.255.0</b></p>
+
+</blockquote>
+
+<ul type=disc>
+ <li class=MsoNormal style='mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
+     mso-list:l27 level1 lfo6;tab-stops:list 36.0pt'><b>[<span class=SpellE>dst|src</span>]
+     <span class=SpellE>port</span> puerto</b>. Cierto en caso de que el puerto
+     (ya sea <span class=SpellE>udp</span> o <span class=SpellE>tcp</span>)
+     coincida con <b>puerto</b>. Si no se especifica <span class=SpellE><b>dst</b></span>
+     o <span class=SpellE><b>src</b></span>, será cierto tanto puerto origen
+     como destino. Si queremos restringir a destino usamos <span class=SpellE><b>dst</b></span>
+     y a origen usamos <span class=SpellE><b>src</b></span>. El puerto es un
+     valor numérico entre 0-65535 o bien un nombre que en <span class=SpellE>Unix</span>
+     se resuelve a través del <i>/<span class=SpellE>etc</span>/<span
+     class=SpellE>services</span></i>. </li>
+</ul>
+
+<blockquote style='margin-top:5.0pt;margin-bottom:5.0pt'>
+
+<p class=MsoNormal style='mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
+margin-left:36.0pt'><b>Ejemplos:</b> </p>
+
+<ul type=disc>
+ <ul type=circle>
+  <li class=MsoNormal style='mso-margin-top-alt:auto;mso-margin-bottom-alt:
+      auto;mso-list:l27 level2 lfo6;tab-stops:list 72.0pt'>Capturar todo el
+      tráfico con destino al puerto 23</li>
+ </ul>
+</ul>
+
+<p class=MsoNormal style='mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
+margin-left:72.0pt'><span class=SpellE><b>tcpdump</b></span><b> <span
+class=SpellE>dst</span> <span class=SpellE>port</span> 23</b> </p>
+
+<ul type=disc>
+ <ul type=circle>
+  <li class=MsoNormal style='mso-margin-top-alt:auto;mso-margin-bottom-alt:
+      auto;mso-list:l27 level2 lfo6;tab-stops:list 72.0pt'>Capturar todo el
+      tráfico con destino o origen puerto 80</li>
+ </ul>
+</ul>
+
+<p class=MsoNormal style='mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
+margin-left:72.0pt'><span class=SpellE><b>tcpdump</b></span><b> <span
+class=SpellE>port</span> 23</b> </p>
+
+</blockquote>
+
+<ul type=disc>
+ <li class=MsoNormal style='mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
+     mso-list:l27 level1 lfo6;tab-stops:list 36.0pt'><span class=SpellE><b>less</b></span><b>
+     longitud</b>. Cierto en caso de que el tamaño del paquete sea menor o
+     igual <b>longitud</b>.</li>
+ <li class=MsoNormal style='mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
+     mso-list:l27 level1 lfo6;tab-stops:list 36.0pt'><span class=SpellE><b>greater</b></span><b>
+     longitud</b>. Cierto en caso de que el tamaño del paquete sea mayor o
+     igual que <span class=SpellE><b>logitud</b></span>.</li>
+ <li class=MsoNormal style='mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
+     mso-list:l27 level1 lfo6;tab-stops:list 36.0pt'><span class=SpellE><b>ip</b></span><b>
+     <span class=SpellE>proto</span> protocolo</b>. En este caso escucha el <b>protocolo</b>
+     que se le indique. <span lang=EN-GB style='mso-ansi-language:EN-GB'>El <span
+     class=SpellE>protocolo</span> <span class=SpellE>puede</span> ser <span
+     class=SpellE><b>icmp</b></span>, <b>icmp6</b>, <span class=SpellE><b>igmp</b></span>
+     (internet group <span class=SpellE>managent</span> protocol), <span
+     class=SpellE><b>igrp</b></span> (interior gateway routing protocol), <span
+     class=SpellE><b>pim</b></span> (protocol independent multicast), <b>ah</b>
+     (IP Authentication header), <span class=SpellE><b>esp</b></span>
+     (encapsulating security payload), <span class=SpellE><b>udp</b></span> o <span
+     class=SpellE><b>tcp</b></span>.<o:p></o:p></span></li>
+</ul>
+
+<p style='margin-left:36.0pt'>Por comodidad se disponen los alias <span
+class=SpellE><b>tcp</b></span>, <span class=SpellE><b>udp</b></span> e <span
+class=SpellE><b>icmp</b></span> que equivalen a <span class=SpellE><b>ip</b></span><b>
+<span class=SpellE>proto</span> <span class=SpellE>tcp</span> <span
+class=SpellE>or</span> ip6 <span class=SpellE>proto</span> <span class=SpellE>tcp</span></b>,
+etc. </p>
+
+<blockquote style='margin-top:5.0pt;margin-bottom:5.0pt'>
+
+<p class=MsoNormal style='mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
+margin-left:36.0pt'><b>Ejemplos:</b> </p>
+
+<ul type=disc>
+ <ul type=circle>
+  <li class=MsoNormal style='mso-margin-top-alt:auto;mso-margin-bottom-alt:
+      auto;mso-list:l27 level2 lfo6;tab-stops:list 72.0pt'>Capturar el todo los
+      paquetes <span class=SpellE>icmp</span></li>
+ </ul>
+</ul>
+
+<p class=MsoNormal style='mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'><b><span
+style='mso-spacerun:yes'> </span><span style='mso-tab-count:2'>                      </span><span
+style='mso-spacerun:yes'> </span><span class=SpellE>ip</span> <span
+class=SpellE>proto</span> \\ip</b></p>
+
+<p class=MsoNormal style='mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
+margin-left:72.0pt'><span style='mso-spacerun:yes'> </span></p>
+
+<ul type=disc>
+ <ul type=circle>
+  <li class=MsoNormal style='mso-margin-top-alt:auto;mso-margin-bottom-alt:
+      auto;mso-list:l27 level2 lfo6;tab-stops:list 72.0pt'>Capturar todo el
+      tráfico <span class=SpellE>udp</span></li>
+ </ul>
+</ul>
+
+<p class=MsoNormal style='mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
+margin-left:72.0pt'><span class=SpellE><b>tcpdump</b></span><b> <span
+class=SpellE>ip</span> <span class=SpellE>proto</span> \\udp</b><br>
+<span class=SpellE><b>tcpdump</b></span><b> <span class=SpellE>udp</span></b> </p>
+
+<p class=MsoNormal style='mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
+margin-left:72.0pt'><span style='mso-spacerun:yes'> </span></p>
+
+</blockquote>
+
+<ul type=disc>
+ <li class=MsoNormal style='mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
+     mso-list:l27 level1 lfo6;tab-stops:list 36.0pt'><b>ip6 <span class=SpellE>proto</span>
+     protocolo</b>. Cierto si es un paquete de <span class=SpellE>IPv6</span>
+     con el protocolo <span class=SpellE><b>protocolo</b></span>.</li>
+ <li class=MsoNormal style='mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
+     mso-list:l27 level1 lfo6;tab-stops:list 36.0pt'><b>ip6 <span class=SpellE>protochain</span>
+     protocolo</b>. Es un número que en los <span class=SpellE>Unix</span>
+     puede leerse en <b>/<span class=SpellE>etc</span>/<span class=SpellE>protocols</span></b>.
+     En este caso lo que se busca es que dentro de los diferentes cabeceras que
+     puede tener un paquete <span class=SpellE>IPv6</span> una de ellas sea el <b>protocolo</b>
+     especificado.</li>
+ <li class=MsoNormal style='mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
+     mso-list:l27 level1 lfo6;tab-stops:list 36.0pt'><span class=SpellE><b>ip</b></span><b>
+     <span class=SpellE>protochain</span> protocolo</b>. Igual que el caso
+     anterior pero para <span class=SpellE>IPv4</span>.</li>
+ <li class=MsoNormal style='mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
+     mso-list:l27 level1 lfo6;tab-stops:list 36.0pt'><span class=SpellE><b>ether</b></span><b>
+     <span class=SpellE>broadcast</span></b>. Cierto si la trama capturada va
+     dirigida hacia la dirección de difusión <span class=SpellE>ethernet</span>.
+     La palabra <span class=SpellE>ether</span> es opcional.</li>
+ <li class=MsoNormal style='mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
+     mso-list:l27 level1 lfo6;tab-stops:list 36.0pt'><span class=SpellE><b>ip</b></span><b>
+     <span class=SpellE>broadcast</span></b>. Cierto si el paquete va dirigido
+     a la dirección de difusión de IP. Esta dirección se comprueba si es todo 0
+     o 1, o bien se comprueba la dirección local de la subred.</li>
+ <li class=MsoNormal style='mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
+     mso-list:l27 level1 lfo6;tab-stops:list 36.0pt'><span class=SpellE><b>ether</b></span><b>
+     <span class=SpellE>multicast</span></b>. Cierto si la trama va dirigida a
+     una dirección <span class=SpellE>multicast</span> <span class=SpellE>ethernet</span>.</li>
+ <li class=MsoNormal style='mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
+     mso-list:l27 level1 lfo6;tab-stops:list 36.0pt'><span class=SpellE><b>ip</b></span><b>
+     <span class=SpellE>multicast</span></b>. Cierto si el paquete va dirigido
+     a una dirección <span class=SpellE>multicast</span> IP.</li>
+ <li class=MsoNormal style='mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
+     mso-list:l27 level1 lfo6;tab-stops:list 36.0pt'><b>ip6 <span class=SpellE>multicast</span></b>.
+     Cierto si el paquete va dirigido a una dirección <span class=SpellE>multicast</span>
+     <span class=SpellE>IPv6</span>.</li>
+ <li class=MsoNormal style='mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
+     mso-list:l27 level1 lfo6;tab-stops:list 36.0pt'><span class=SpellE><b>ether</b></span><b>
+     <span class=SpellE>proto</span> protocolo</b>. Cierto si el protocolo que
+     contiene la trama es de tipo <b>protocolo</b> Los protocolos son <span
+     class=SpellE><b>ip</b></span>, <b>ip6</b>, <span class=SpellE><b>arp</b></span>,
+     <span class=SpellE><b>rarp</b></span>, <span class=SpellE><b>atalk</b></span>,
+     <span class=SpellE><b>aarp</b></span>, <span class=SpellE><b>decnet</b></span>,
+     <span class=SpellE><b>sca</b></span>, <span class=SpellE><b>lat</b></span>,
+     <span class=SpellE><b>mopdl</b></span> <span class=SpellE><b>moprc</b></span>
+     e <span class=SpellE><b>iso</b></span>. Además estos nombres son
+     identificadores que deben de ser escapados con <b>\</b>. </li>
+</ul>
+
+<p style='margin-left:36.0pt'>Sin embargo hay una serie de alias que hacen mas cómodo
+la expresión en los filtros. Dichas expresiones son <span class=SpellE><b>ip</b>,<b>ip6</b></span>
+,<span class=SpellE><b>arp</b>,<b>rarp</b>,<b>aarp</b></span>, <span
+class=SpellE><b>decnet</b></span> e <span class=SpellE><b>iso</b></span>,
+siendo equivalentes a <span class=SpellE><b>ether</b></span><b> <span
+class=SpellE>proto</span> <span class=SpellE>ip</span></b>, <span class=SpellE><b>ether</b></span><b>
+<span class=SpellE>proto</span> ip6</b>, etc. </p>
+
+<blockquote style='margin-top:5.0pt;margin-bottom:5.0pt'>
+
+<p class=MsoNormal style='mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
+margin-left:36.0pt'><b>Ejemplos:</b> </p>
+
+<ul type=disc>
+ <ul type=circle>
+  <li class=MsoNormal style='mso-margin-top-alt:auto;mso-margin-bottom-alt:
+      auto;mso-list:l27 level2 lfo6;tab-stops:list 72.0pt'>Capturar todo
+      tráfico <span class=SpellE>arp</span></li>
+ </ul>
+</ul>
+
+<p class=MsoNormal style='mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
+margin-left:72.0pt'><span class=SpellE><b><span lang=EN-GB style='mso-ansi-language:
+EN-GB'>tcpdump</span></b></span><b><span lang=EN-GB style='mso-ansi-language:
+EN-GB'> -n ether proto \\arp</span></b><span lang=EN-GB style='mso-ansi-language:
+EN-GB'><br>
+<span class=SpellE><b>tcpdump</b></span><b> -n <span class=SpellE>arp</span></b><o:p></o:p></span></p>
+
+<p class=MsoNormal style='mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
+margin-left:72.0pt'>(el alias es más cómodo) </p>
+
+<ul type=disc>
+ <ul type=circle>
+  <li class=MsoNormal style='mso-margin-top-alt:auto;mso-margin-bottom-alt:
+      auto;mso-list:l27 level2 lfo6;tab-stops:list 72.0pt'>Capturar todo
+      tráfico <span class=SpellE>ip</span></li>
+ </ul>
+</ul>
+
+<p class=MsoNormal style='mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
+margin-left:72.0pt'><span class=SpellE><b><span lang=EN-GB style='mso-ansi-language:
+EN-GB'>tcpdump</span></b></span><b><span lang=EN-GB style='mso-ansi-language:
+EN-GB'> -n ether proto \\ip</span></b><span lang=EN-GB style='mso-ansi-language:
+EN-GB'><br>
+<span class=SpellE><b>tcpdump</b></span><b> -n <span class=SpellE>ipi</span></b><o:p></o:p></span></p>
+
+</blockquote>
+
+<ul type=disc>
+ <li class=MsoNormal style='mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
+     mso-list:l27 level1 lfo6;tab-stops:list 36.0pt'><span class=SpellE><b>vlan</b></span><b>
+     [<span class=SpellE>vlanid</span>]</b>. Cierto si la trama capturada es un
+     paquete 802.1Q VLAN. Hacer notar de que esto cambia el resto de la
+     interpretación del paquete capturado, en especial los desplazamientos a
+     partir de los cuales empiezan a decodificar los protocolos, ya que se
+     asume que estamos capturando paquetes que viajan en tramas VLAN. Por
+     último si esta presente el <span class=SpellE>parametro</span> <span
+     class=SpellE>vlanid</span>, sólo se mostraran aquellos paquetes que vayan
+     a la VLAN <span class=SpellE><b>vlanid</b></span>.</li>
+</ul>
+
+<p class=MsoNormal>Se pueden combinar las expresiones anteriores con los ayuda
+de los operadores <span class=SpellE><b>not</b></span>, <span class=SpellE><b>and</b></span>
+y <span class=SpellE><b>or</b></span> (corresponden a la <i>negación</i>, el <i>y
+lógico</i> y el <i>o lógico</i>, dando lugar a filtros más complejos. Podemos
+usar también los equivalentes del lenguaje C: <b>!</b>, <b>&amp;&amp;</b> o <b>||</b>.
+</p>
+
+<blockquote style='margin-top:5.0pt;margin-bottom:5.0pt'>
+
+<p class=MsoNormal><b>Ejemplos:</b> </p>
+
+<ul type=disc>
+ <li class=MsoNormal style='mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
+     mso-list:l24 level1 lfo28;tab-stops:list 36.0pt'>Capturar todo el tráfico
+     Web (TCP <span class=SpellE>port</span> 80)</li>
+</ul>
+
+<p class=MsoNormal style='mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
+margin-left:36.0pt'><span class=SpellE><b>tcp</b></span><b> <span class=SpellE>and</span>
+<span class=SpellE>port</span> 80</b> </p>
+
+<ul type=disc>
+ <li class=MsoNormal style='mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
+     mso-list:l24 level1 lfo28;tab-stops:list 36.0pt'>Capturar el todas las
+     peticiones DNS</li>
+</ul>
+
+<p class=MsoNormal style='mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
+margin-left:36.0pt'><span class=SpellE><b><span lang=EN-GB style='mso-ansi-language:
+EN-GB'>udp</span></b></span><b><span lang=EN-GB style='mso-ansi-language:EN-GB'>
+and <span class=SpellE>dst</span> port 53</span></b><span lang=EN-GB
+style='mso-ansi-language:EN-GB'> <o:p></o:p></span></p>
+
+<ul type=disc>
+ <li class=MsoNormal style='mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
+     mso-list:l24 level1 lfo28;tab-stops:list 36.0pt'>Capturar el tráfico al
+     puerto <span class=SpellE>telnet</span> o <span class=SpellE>ssh</span></li>
+</ul>
+
+<p class=MsoNormal style='mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
+margin-left:36.0pt'><span class=SpellE><b><span lang=EN-GB style='mso-ansi-language:
+EN-GB'>tcp</span></b></span><b><span lang=EN-GB style='mso-ansi-language:EN-GB'>
+and \(port 22 or port 23\)</span></b><span lang=EN-GB style='mso-ansi-language:
+EN-GB'><o:p></o:p></span></p>
+
+<p class=MsoNormal style='mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'><span
+lang=EN-GB style='mso-ansi-language:EN-GB'><span
+style='mso-spacerun:yes'> </span></span></p>
+
+<ul type=disc>
+ <li class=MsoNormal style='mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
+     mso-list:l24 level1 lfo28;tab-stops:list 36.0pt'>Capturar todo el tráfico
+     excepto el <span class=SpellE>web</span></li>
+</ul>
+
+<p class=MsoNormal style='mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
+margin-left:36.0pt'><span class=SpellE><b><span lang=EN-GB style='mso-ansi-language:
+EN-GB'>tcpdump</span></b></span><b><span lang=EN-GB style='mso-ansi-language:
+EN-GB'> <span class=SpellE>tcp</span> and not port 80</span></b><span
+lang=EN-GB style='mso-ansi-language:EN-GB'> <o:p></o:p></span></p>
+
+<p class=MsoNormal style='mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'><span
+lang=EN-GB style='mso-ansi-language:EN-GB'><o:p>&nbsp;</o:p></span></p>
+
+</blockquote>
+
+</div>
+</body>
+
+</html>

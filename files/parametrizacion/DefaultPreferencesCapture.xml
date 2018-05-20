@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CaptureSniffer>
+  <CapturePreferences>
+    <Capture>
+      <Interface>Microsoft
+ Microsoft</Interface>
+      <Promiscuous_Modo>Yes</Promiscuous_Modo>
+      <Filter Id="No">
+        <Advanced Id="No" />
+        <Normal Id="Yes">
+          <Host />
+          <Protocol />
+          <Port />
+        </Normal>
+      </Filter>
+    </Capture>
+    <File>
+      <Locate>D:\projecto\files\capturas\a1.pcap</Locate>
+      <Multiple_Files Id="No">
+        <Space Id="No" Type="kilobyte(s)" />
+        <Time Id="No" Type="segundo(s)" />
+        <Ring_Buffer Id="No" Type="" />
+        <Stop_After Id="No" Type="" />
+      </Multiple_Files>
+    </File>
+    <Stop_Capture>
+      <After_Packets Id="Yes">10</After_Packets>
+      <After_Space Id="No" Type="kilobyte(s)" />
+      <After_Time Id="No" Type="segundo(s)" />
+    </Stop_Capture>
+  </CapturePreferences>
+</CaptureSniffer>
+

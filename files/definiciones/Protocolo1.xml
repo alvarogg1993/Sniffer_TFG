@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DefinicionProtocoloSniffer>
+  <DefinicionProtocolo>
+    <Clave0>
+      <Valor>false</Valor>
+      <Tipo>Booleano</Tipo>
+      <PosicionInicio>0</PosicionInicio>
+      <Tamaño>1</Tamaño>
+    </Clave0>
+    <Clave1>
+      <Valor>12</Valor>
+      <Tipo>Numerico</Tipo>
+      <PosicionInicio>1</PosicionInicio>
+      <Tamaño>1</Tamaño>
+    </Clave1>
+    <CamposProtocolo>
+      <Protocolo>Protocolo1</Protocolo>
+      <Nivel>1</Nivel>
+      <NumeroCampos>3</NumeroCampos>
+      <CamposClave>1-2</CamposClave>
+      <RFC>Rfc1</RFC>
+    </CamposProtocolo>
+    <Campo1>
+      <IDCampo>1</IDCampo>
+      <NombreCampo>Campo1</NombreCampo>
+      <TamañoCampo>8</TamañoCampo>
+      <ValorDefectoCampo>false</ValorDefectoCampo>
+      <DescripcionCampo>null</DescripcionCampo>
+      <TipoDato>Booleano</TipoDato>
+      <Opcional>No</Opcional>
+      <CampoReferenciado>null</CampoReferenciado>
+    </Campo1>
+    <Campo2>
+      <IDCampo>2</IDCampo>
+      <NombreCampo>Campo2</NombreCampo>
+      <TamañoCampo>12</TamañoCampo>
+      <ValorDefectoCampo>12</ValorDefectoCampo>
+      <DescripcionCampo>null</DescripcionCampo>
+      <TipoDato>Numerico</TipoDato>
+      <Opcional>No</Opcional>
+      <CampoReferenciado>null</CampoReferenciado>
+    </Campo2>
+    <Campo3>
+      <IDCampo>3</IDCampo>
+      <NombreCampo>Campo3</NombreCampo>
+      <TamañoCampo>12</TamañoCampo>
+      <ValorDefectoCampo>Campo1</ValorDefectoCampo>
+      <DescripcionCampo>null</DescripcionCampo>
+      <TipoDato>Alfanumerico</TipoDato>
+      <Opcional>No</Opcional>
+      <CampoReferenciado>null</CampoReferenciado>
+    </Campo3>
+  </DefinicionProtocolo>
+</DefinicionProtocoloSniffer>
+

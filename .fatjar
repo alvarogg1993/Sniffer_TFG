@@ -1,0 +1,14 @@
+#Fat Jar Configuration File
+#Sun Sep 07 21:40:21 CEST 2014
+onejar.license.required=true
+manifest.classpath=
+manifest.removesigners=false
+onejar.checkbox=false
+jarname=Sniffer-III.jar
+manifest.mergeall=false
+manifest.mainclass=Sniffer
+manifest.file=<createnew>
+jarname.isextern=false
+onejar.expand=
+excludes=
+includes=
