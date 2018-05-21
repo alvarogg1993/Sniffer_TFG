@@ -535,7 +535,7 @@ public class PreferenciasDefinicion
   {
     for (int i = 0; i < numCampos; i++) {
       for (int j = 0; j < numColumnas; j++) {
-        if (tabla[i][j].equals("null")) {
+        if (tabla[i][j]==null || tabla[i][j].equals("null")) {
           jTable1.setValueAt(" ", i, j);
         } else {
           jTable1.setValueAt(tabla[i][j], i, j);
